@@ -29,6 +29,8 @@ const DEFAULT_NVIDIA_NIM_BASE_URL: &str = "https://integrate.api.nvidia.com/v1";
 const DEFAULT_OPENAI_BASE_URL: &str = "https://api.openai.com/v1";
 const DEFAULT_ATLASCLOUD_MODEL: &str = "deepseek-ai/deepseek-v4-flash";
 const DEFAULT_ATLASCLOUD_BASE_URL: &str = "https://api.atlascloud.ai/v1";
+const DEFAULT_ASTRAFLOW_MODEL: &str = "deepseek-ai/deepseek-v4-pro";
+const DEFAULT_ASTRAFLOW_BASE_URL: &str = "https://api-us-ca.umodelverse.ai/v1";
 const DEFAULT_WANJIE_ARK_MODEL: &str = "deepseek-reasoner";
 const DEFAULT_WANJIE_ARK_BASE_URL: &str = "https://maas-openapi.wanjiedata.com/api/v1";
 const DEFAULT_VOLCENGINE_MODEL: &str = "DeepSeek-V4-Pro";
@@ -107,6 +109,7 @@ pub enum ProviderKind {
     #[serde(alias = "open-ai")]
     Openai,
     Atlascloud,
+    Astraflow,
     #[serde(
         alias = "wanjie",
         alias = "wanjie_ark",
@@ -143,6 +146,7 @@ impl ProviderKind {
         Self::NvidiaNim,
         Self::Openai,
         Self::Atlascloud,
+        Self::Astraflow,
         Self::WanjieArk,
         Self::Volcengine,
         Self::Openrouter,
@@ -166,6 +170,7 @@ impl ProviderKind {
             Self::NvidiaNim => "nvidia-nim",
             Self::Openai => "openai",
             Self::Atlascloud => "atlascloud",
+            Self::Astraflow => "astraflow",
             Self::WanjieArk => "wanjie-ark",
             Self::Volcengine => "volcengine",
             Self::Openrouter => "openrouter",
@@ -191,6 +196,7 @@ impl ProviderKind {
             "nvidia" | "nvidia-nim" | "nvidia_nim" | "nim" => Some(Self::NvidiaNim),
             "openai" | "open-ai" => Some(Self::Openai),
             "atlascloud" | "atlas-cloud" | "atlas_cloud" | "atlas" => Some(Self::Atlascloud),
+            "astraflow" | "astra-flow" | "astra_flow" => Some(Self::Astraflow),
             "wanjie" | "wanjie-ark" | "wanjie_ark" | "ark-wanjie" | "ark_wanjie" | "wanjieark"
             | "wanjie-maas" | "wanjie_maas" | "wanjiemaas" => Some(Self::WanjieArk),
             "volcengine" | "volcengine-ark" | "volcengine_ark" | "ark" | "volc-ark"
@@ -252,6 +258,8 @@ pub struct ProvidersToml {
     #[serde(default)]
     pub atlascloud: ProviderConfigToml,
     #[serde(default)]
+    pub astraflow: ProviderConfigToml,
+    #[serde(default)]
     pub wanjie_ark: ProviderConfigToml,
     #[serde(default)]
     pub volcengine: ProviderConfigToml,
@@ -311,6 +319,7 @@ impl ProvidersToml {
             ProviderKind::NvidiaNim => &self.nvidia_nim,
             ProviderKind::Openai => &self.openai,
             ProviderKind::Atlascloud => &self.atlascloud,
+            ProviderKind::Astraflow => &self.astraflow,
             ProviderKind::WanjieArk => &self.wanjie_ark,
             ProviderKind::Volcengine => &self.volcengine,
             ProviderKind::Openrouter => &self.openrouter,
@@ -333,6 +342,7 @@ impl ProvidersToml {
             ProviderKind::NvidiaNim => &mut self.nvidia_nim,
             ProviderKind::Openai => &mut self.openai,
             ProviderKind::Atlascloud => &mut self.atlascloud,
+            ProviderKind::Astraflow => &mut self.astraflow,
             ProviderKind::WanjieArk => &mut self.wanjie_ark,
             ProviderKind::Volcengine => &mut self.volcengine,
             ProviderKind::Openrouter => &mut self.openrouter,

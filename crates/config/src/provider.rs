@@ -7,6 +7,7 @@
 use super::{
     DEFAULT_ARCEE_BASE_URL, DEFAULT_ARCEE_MODEL, DEFAULT_ATLASCLOUD_BASE_URL,
     DEFAULT_ATLASCLOUD_MODEL, DEFAULT_DEEPSEEK_BASE_URL, DEFAULT_DEEPSEEK_MODEL,
+    DEFAULT_ASTRAFLOW_BASE_URL, DEFAULT_ASTRAFLOW_MODEL,
     DEFAULT_FIREWORKS_BASE_URL, DEFAULT_FIREWORKS_MODEL, DEFAULT_HUGGINGFACE_BASE_URL,
     DEFAULT_HUGGINGFACE_MODEL, DEFAULT_MOONSHOT_BASE_URL, DEFAULT_MOONSHOT_MODEL,
     DEFAULT_NOVITA_BASE_URL, DEFAULT_NOVITA_MODEL, DEFAULT_NVIDIA_NIM_BASE_URL,
@@ -133,6 +134,15 @@ provider!(
     DEFAULT_ATLASCLOUD_MODEL,
     ["ATLASCLOUD_API_KEY"],
     "atlascloud"
+);
+provider!(
+    Astraflow,
+    Astraflow,
+    "Astraflow",
+    DEFAULT_ASTRAFLOW_BASE_URL,
+    DEFAULT_ASTRAFLOW_MODEL,
+    ["ASTRAFLOW_API_KEY"],
+    "astraflow"
 );
 provider!(
     WanjieArk,
@@ -279,6 +289,7 @@ static DEEPSEEK: Deepseek = Deepseek;
 static NVIDIA_NIM: NvidiaNim = NvidiaNim;
 static OPENAI: Openai = Openai;
 static ATLASCLOUD: Atlascloud = Atlascloud;
+static ASTRAFLOW: Astraflow = Astraflow;
 static WANJIE_ARK: WanjieArk = WanjieArk;
 static VOLCENGINE: Volcengine = Volcengine;
 static OPENROUTER: Openrouter = Openrouter;
@@ -294,11 +305,12 @@ static VLLM: Vllm = Vllm;
 static OLLAMA: Ollama = Ollama;
 static HUGGINGFACE: Huggingface = Huggingface;
 
-static PROVIDER_REGISTRY: [&dyn Provider; 18] = [
+static PROVIDER_REGISTRY: [&dyn Provider; 19] = [
     &DEEPSEEK,
     &NVIDIA_NIM,
     &OPENAI,
     &ATLASCLOUD,
+    &ASTRAFLOW,
     &WANJIE_ARK,
     &VOLCENGINE,
     &OPENROUTER,
@@ -345,6 +357,7 @@ pub fn provider_for_kind(kind: ProviderKind) -> &'static dyn Provider {
         ProviderKind::NvidiaNim => &NVIDIA_NIM,
         ProviderKind::Openai => &OPENAI,
         ProviderKind::Atlascloud => &ATLASCLOUD,
+        ProviderKind::Astraflow => &ASTRAFLOW,
         ProviderKind::WanjieArk => &WANJIE_ARK,
         ProviderKind::Volcengine => &VOLCENGINE,
         ProviderKind::Openrouter => &OPENROUTER,
