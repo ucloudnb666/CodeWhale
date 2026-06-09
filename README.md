@@ -1,5 +1,14 @@
 # CodeWhale
 
+## Supported LLM Providers
+
+- OpenAI
+- Astraflow (支持200+模型)
+
+## Configuration
+
+Copy `.env.example` to `.env` and add your API keys.# CodeWhale
+
 > Local-first agent harness for DeepSeek V4 and open models: operating identity,
 > nested authority, and a local evidence loop.
 
